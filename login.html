@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Admin Login | Priyabrata Patra</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #eaf3ff, #f8fbff);
+      color: #152238;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      background: #fff;
+      padding: 38px 32px;
+      border-radius: 22px;
+      box-shadow: 0 18px 60px rgba(22, 79, 150, 0.12);
+      border: 1px solid #e5eefb;
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .brand-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #1672ed, #0752b8);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: 800;
+      box-shadow: 0 8px 20px rgba(22, 114, 237, 0.2);
+    }
+
+    h1 {
+      font-size: 25px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #718096;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .secure-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 14px;
+      padding: 7px 12px;
+      background: #edf7ff;
+      border-radius: 30px;
+      color: #1764c0;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 19px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #26364d;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid #dce5f0;
+      border-radius: 11px;
+      outline: none;
+      font-size: 14px;
+      color: #1b2b42;
+      background: #fbfdff;
+      transition: 0.2s ease;
+    }
+
+    input:focus {
+      border-color: #1672ed;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(22, 114, 237, 0.09);
+    }
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: transparent;
+      color: #1764c0;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .password-wrapper input {
+      padding-right: 65px;
+    }
+
+    .login-button {
+      width: 100%;
+      border: none;
+      padding: 15px;
+      margin-top: 5px;
+      background: linear-gradient(135deg, #1672ed, #0752b8);
+      color: #fff;
+      border-radius: 11px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .login-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(22, 114, 237, 0.2);
+    }
+
+    .login-button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .message {
+      display: none;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .message.error {
+      display: block;
+      color: #a12626;
+      background: #fff0f0;
+      border: 1px solid #ffd4d4;
+    }
+
+    .message.success {
+      display: block;
+      color: #17643c;
+      background: #edfff4;
+      border: 1px solid #c5f2d6;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 27px;
+      color: #8995a5;
+      font-size: 11px;
+      line-height: 1.7;
+    }
+
+    .footer strong {
+      color: #47617e;
+    }
+
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 30px 22px;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="login-container">
+    <div class="brand">
+      <div class="brand-icon">P</div>
+      <h1>Admin Portal</h1>
+      <p class="subtitle">
+        Priyabrata Patra<br>
+        Secure portfolio management access
+      </p>
+      <div class="secure-label">🔒 Private Admin Access</div>
+    </div>
+
+    <div id="message" class="message" role="alert" aria-live="polite"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Admin Email</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your admin email"
+          autocomplete="username"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="password-wrapper">
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+            required
+          />
+          <button
+            type="button"
+            class="toggle-password"
+            id="togglePassword"
+          >Show</button>
+        </div>
+      </div>
+
+      <button type="submit" class="login-button" id="loginButton">
+        Sign In Securely
+      </button>
+    </form>
+
+    <div class="footer">
+      <strong>Authorized access only</strong><br>
+      © <span id="year"></span> Priyabrata Patra
+    </div>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      onAuthStateChanged,
+      signOut
+    } from
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    // Replace with your Firebase project configuration.
+    const firebaseConfig = {
+      apiKey: "YOUR_FIREBASE_API_KEY",
+      authDomain: "YOUR_PROJECT.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      appId: "YOUR_FIREBASE_APP_ID"
+    };
+
+    // Set this to the one email address authorized to sign in.
+    const ADMIN_EMAIL = "your-email@example.com";
+
+    // Change this to your actual dashboard page.
+    const DASHBOARD_URL = "dashboard.html";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const form = document.getElementById("loginForm");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const loginButton = document.getElementById("loginButton");
+    const message = document.getElementById("message");
+    const togglePassword = document.getElementById("togglePassword");
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    function showMessage(text, type = "error") {
+      message.textContent = text;
+      message.className = `message ${type}`;
+    }
+
+    function clearMessage() {
+      message.textContent = "";
+      message.className = "message";
+    }
+
+    function isAuthorizedEmail(email) {
+      return email?.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+    }
+
+    togglePassword.addEventListener("click", () => {
+      const isPassword = passwordInput.type === "password";
+      passwordInput.type = isPassword ? "text" : "password";
+      togglePassword.textContent = isPassword ? "Hide" : "Show";
+    });
+
+    // If an existing session is present, verify its admin status.
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) return;
+
+      if (!isAuthorizedEmail(user.email)) {
+        await signOut(auth);
+        showMessage("Access denied. This account is not authorized.");
+        return;
+      }
+
+      // The server-side dashboard must also verify admin permissions.
+      window.location.replace(DASHBOARD_URL);
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      clearMessage();
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      if (!isAuthorizedEmail(email)) {
+        showMessage("Access denied. Unauthorized email address.");
+        return;
+      }
+
+      loginButton.disabled = true;
+      loginButton.textContent = "Verifying...";
+
+      try {
+        const result = await signInWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+        if (!isAuthorizedEmail(result.user.email)) {
+          await signOut(auth);
+          showMessage("Access denied.");
+          return;
+        }
+
+        showMessage("Login successful. Opening dashboard...", "success");
+        window.location.replace(DASHBOARD_URL);
+
+      } catch (error) {
+        console.error("Login error:", error.code);
+
+        if (
+          error.code === "auth/invalid-credential" ||
+          error.code === "auth/wrong-password" ||
+          error.code === "auth/user-not-found"
+        ) {
+          showMessage("Invalid email or password.");
+        } else if (error.code === "auth/too-many-requests") {
+          showMessage("Too many attempts. Please try again later.");
+        } else {
+          showMessage("Unable to sign in. Check your Firebase setup.");
+        }
+      } finally {
+        loginButton.disabled = false;
+        loginButton.textContent = "Sign In Securely";
+      }
+    });
+  </script>
+</body>
+</html>
